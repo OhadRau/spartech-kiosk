@@ -1,0 +1,17 @@
+Name: spartech Kiosk
+Version: 1.0
+OCamlVersion: >= 4.02
+Synopsis: Device management system
+Authors: Ohad Rau <ohadrau@yahoo.com>
+License: MIT
+
+OASISFormat: 0.4
+BuildTools: ocamlbuild
+Plugins: META (0.4), DevFiles (0.4)
+
+Executable "spartech-kiosk"
+  Path: src/
+  MainIs: main.ml
+  CompiledObject: best
+  Install: false
+  BuildDepends: lwt, opium, opium.unix, yojson, batteries, gensqlite, gensqlite.ppx, ppx_blob
