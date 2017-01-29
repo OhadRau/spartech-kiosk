@@ -6,6 +6,9 @@ open Gensqlite_tools
 let db = Sqlite3.db_open "data/tickets.db"
 
 module Raw = struct
+  let (_, get_code) = [%gensqlite db "SELECT @d{used} FROM codes WHERE code=%s{code}"]
+  let (_, put_code) = [%gensqlite db "INSERT INTO codes (code, used) VALUES (%s{code}, 0)"]
+  let (_, use_code) = [%gensqlite db "UPDATE codes SET used = 1 WHERE code=%s{code}"]
   let (_, new_user) = [%gensqlite db "INSERT INTO users (firstname, lastname, email, username, password) VALUES \
                                       (%s{firstname}, %s{lastname}, %s{email}, %s{username}, %s{password})"]
 
@@ -23,9 +26,23 @@ module Raw = struct
   let (_, purge_archived) = [%gensqlite db "DELETE FROM tickets WHERE ROWID = %d{rowid}"]
 end
 
-let new_user ~firstname ~lastname ~email ~username ~password =
-  let hashed = Bcrypt.(hash password |> string_of_hash) in
-  Raw.new_user ~firstname ~lastname ~email ~username ~password:hashed ()
+let create_signup_code () =
+  Random.self_init ();
+  let code = Int64.(Random.int64 max_int |> to_string) in
+  try
+    Raw.put_code ~code ();
+    Printf.printf "New sign-up code: %s %!" code
+  with _ -> print_endline "Could not create a unique sign-up code!"
+
+let new_user ~firstname ~lastname ~email ~username ~password ~code =
+  let code_used = Raw.get_code ~code () in
+  match code_used with
+  | [0] ->
+    Raw.use_code ~code ();
+    let hashed = Bcrypt.(hash password |> string_of_hash) in
+    Raw.new_user ~firstname ~lastname ~email ~username ~password:hashed ();
+    true
+  | _ -> false
 
 let get_user ~username =
   match Raw.get_user ~username () with

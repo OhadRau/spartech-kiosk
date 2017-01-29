@@ -11,12 +11,15 @@ let new_user = post "/new/" begin fun req ->
     and lastname  = post_param "lastname"
     and email     = post_param "email"
     and username  = post_param "username"
-    and password  = post_param "password" in
-    Db.new_user ~firstname ~lastname ~email ~username ~password;
-    redirect' (Uri.of_string "/")
+    and password  = post_param "password"
+    and code      = post_param "code" in
+    if Db.new_user ~firstname ~lastname ~email ~username ~password ~code
+      then redirect' (Uri.of_string "/")
+      else redirect' (Uri.of_string "/signup/")
   end
 
 let signup = get "/signup/" begin fun req ->
+    Db.create_signup_code ();
     `String [%blob "../static/signup.html"] |> respond'
   end
 
