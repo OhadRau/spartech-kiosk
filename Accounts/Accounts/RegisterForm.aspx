@@ -15,48 +15,63 @@
 <body>
     <form id="form1" runat="server">
 
+        <div class ="Logo">
+            <img src="Images/fulton-county-logo.png" />
+        </div>
+
 
     <div class ="PAGE">
 
-        <div class ="LOGIN">
+        <div class ="Ticket">
 
-        <table style="width: 100%;">
+        <table>
+            <br /><br /><br />
             <tr>
-                <td style="padding: 18px;">
+                <td style="padding: 5%;">
                     USERNAME :
                 </td>
-                <td>
+                <td style="padding: 5%;">
                     <asp:TextBox ID="UsernameTextbox" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
-                <td style ="padding: 18px;">
+                <td style="padding: 5%;">
+                    EMAIL : 
+                </td>
+                <td style="padding: 5%;">
+                    <asp:TextBox ID="EmailTextbox" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 5%;">
                     PASSWORD :
                 </td>
-                <td>
+                <td style="padding: 5%;">
                     <asp:TextBox ID="PasswordTextbox" TextMode ="Password" runat="server"></asp:TextBox>
                 </td>
             </tr>
-            <tr style ="padding: 18px;">
-                <td>CONFIRM PASSWORD :
+            <tr>
+                <td style="padding: 5%;">
+                    CONFIRM PASSWORD :
                 </td>
-                <td>
+                <td style="padding: 5%;">
                     <asp:TextBox ID="ConfirmPasswordTextbx" TextMode ="Password" runat="server"></asp:TextBox>
                 </td>
             </tr>
         
-            <tr style ="padding: 18px;">
-                <td>SCHOOL CODE :
+            <tr>
+                <td style="padding: 5%;">
+                    SCHOOL CODE :
                 </td>
-                <td>
+                <td style="padding: 5%;">
                     <asp:TextBox ID="SchoolCodeTextbox" runat="server"></asp:TextBox>
                 </td>
             </tr>
 
-             <tr style ="padding: 18px;">
-                <td>
+             <tr>
+                <td style="padding: 5%;">
                 </td>
-                <td>
+                <td style="padding: 5%;">
                     <asp:Button ID="RegisterButton" runat="server" class="btn" Text="Register" OnClick="RegisterButton_Click" />
                 </td>
             </tr>

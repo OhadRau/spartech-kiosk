@@ -10,7 +10,7 @@
 namespace Accounts {
     
     
-    public partial class RegisterForm {
+    public partial class NewTicket {
         
         /// <summary>
         /// form1 control.
@@ -22,15 +22,6 @@ namespace Accounts {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// UsernameTextbox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UsernameTextbox;
-        
-        /// <summary>
         /// EmailTextbox control.
         /// </summary>
         /// <remarks>
@@ -40,39 +31,21 @@ namespace Accounts {
         protected global::System.Web.UI.WebControls.TextBox EmailTextbox;
         
         /// <summary>
-        /// PasswordTextbox control.
+        /// DeviceList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PasswordTextbox;
+        protected global::System.Web.UI.WebControls.DropDownList DeviceList;
         
         /// <summary>
-        /// ConfirmPasswordTextbx control.
+        /// SubmitButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ConfirmPasswordTextbx;
-        
-        /// <summary>
-        /// SchoolCodeTextbox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SchoolCodeTextbox;
-        
-        /// <summary>
-        /// RegisterButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button RegisterButton;
+        protected global::System.Web.UI.WebControls.Button SubmitButton;
     }
 }

@@ -1,5 +1,5 @@
 ﻿body {
-    background-color: steelblue; 
+    background-color: white; 
 
 }
 .PAGE{
@@ -8,7 +8,8 @@
 }
 .LOGIN{
     width: 400px;
-    height: 212px;
+
+    height:auto; 
     background-color: #958EE7;
     border-radius: 5px 5px 5px 5px;
     margin-top: 188px;
@@ -16,7 +17,30 @@
     margin-right: auto;
     margin-bottom: 0;
 }
+.Ticket{
+    width: 25%;
+    height: 100%;
+    background-color: #B88000;
+    border-radius: 0px 0px 0px 0px;
+    position: fixed;
+    top: 0em;
+    right: 0em;
+    border-style: solid;
+    border-left-color: #175F20;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-right-color:transparent;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+} 
+
 .btn{
     width: 76px;
     height:30px; 
+}
+.Logo{
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
 }

@@ -19,7 +19,7 @@ namespace Accounts.Css
         {
             Console.WriteLine("Logging in to account");
 
-            SqlConnection con = new SqlConnection("Data Source=" + "10.217.118.152;" +
+            SqlConnection con = new SqlConnection("Data Source=" + "10.217.115.245;" +
                                                    "Database=STUDENT_KIOSK,1433;" +
                                                    "Integrated Security = false;" +
                                                    "Initial Catalog=master;" +
@@ -28,7 +28,7 @@ namespace Accounts.Css
                                                    "Password=Student123;");
 
             con.Open();
-            SqlCommand command = new SqlCommand("SELECT * FROM Accounts", con);
+            SqlCommand command = new SqlCommand("SELECT * FROM Student_Accounts", con);
             SqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -38,13 +38,12 @@ namespace Accounts.Css
                     if (reader["Password"].ToString() == TextBox2.Text)
                     {
                         // Goto login page
+                        Session["Name"] = TextBox1.Text;
+                        Response.Redirect("NewTicket.aspx"); 
                     }
                 }
             }
             
-
-
-
             con.Close();
         }
 

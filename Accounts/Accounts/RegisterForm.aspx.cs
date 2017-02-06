@@ -22,12 +22,13 @@ namespace Accounts
         {
             string password;
             string username = UsernameTextbox.Text;
+            string email = EmailTextbox.Text; 
             if (PasswordTextbox.Text == ConfirmPasswordTextbx.Text)
             {
                 Console.WriteLine("adding new account");
                 password = PasswordTextbox.Text;
 
-                SqlConnection con = new SqlConnection("Data Source=" + "10.217.118.152;" +
+                SqlConnection con = new SqlConnection("Data Source=" + "10.217.115.245;" +
                                                   "Database=STUDENT_KIOSK,1433;" +
                                                   "Integrated Security = false;" +
                                                   "Initial Catalog=master;" +
@@ -36,21 +37,25 @@ namespace Accounts
                                                   "Password=Student123;");
 
                 con.Open();
-                SqlCommand command = new SqlCommand("SELECT * FROM Accounts", con);
-                string query = "INSERT INTO Accounts (Name, Password) VALUES (@Name, @Password)";
+                SqlCommand command = new SqlCommand("SELECT * FROM Student_Accounts", con);
+                string query = "INSERT INTO Student_Accounts (Name, Email, Password) VALUES (@Name, @Email, @Password)";
 
                 SqlCommand cmd = new SqlCommand(query);
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Connection = con;
                 cmd.Parameters.AddWithValue("@Name", username);
+                cmd.Parameters.AddWithValue("@Email", email); 
                 cmd.Parameters.AddWithValue("@Password", password);
                 cmd.ExecuteNonQuery();
                 con.Close();
+                
+                // Redirect to form page 
 
             }
             else
             {
-               
+               // passwords dont match 
+
             }
 
             

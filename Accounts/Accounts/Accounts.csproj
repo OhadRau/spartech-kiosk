@@ -94,6 +94,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\fulton-county-logo.png" />
+    <Content Include="NewTicket.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -116,6 +118,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NewTicket.aspx.cs">
+      <DependentUpon>NewTicket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewTicket.aspx.designer.cs">
+      <DependentUpon>NewTicket.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RegisterForm.aspx.cs">
       <DependentUpon>RegisterForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
