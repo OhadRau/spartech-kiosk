@@ -14,4 +14,5 @@ Executable "spartech-kiosk"
   MainIs: main.ml
   CompiledObject: best
   Install: false
-  BuildDepends: lwt, opium, opium.unix, yojson, batteries, gensqlite, gensqlite.ppx, ppx_blob, safepass
+  BuildDepends: lwt, opium, opium.unix, yojson, batteries, gensqlite, gensqlite.ppx, ppx_blob, safepass, smtp, smtp.lwt
+

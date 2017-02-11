@@ -59,7 +59,12 @@ let submit_ticket = post "/submit/" begin fun req ->
     and timestamp = string_of_float @@ Unix.time ()
     and assigned = post_param "assigned" in
     Db.put_ticket ~name ~issue ~timestamp ~assigned;
-    redirect' (Uri.of_string "/")
+    let open Lwt in
+    begin match Db.get_user ~username:assigned with
+      | Some (_, _, email) ->
+        Mail.send_reminder ~email ~name ~issue >>= const (return ())
+      | None -> return ()
+    end >>= const (redirect' (Uri.of_string "/"))
   end
 
 let index = get "/" begin fun req ->

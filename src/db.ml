@@ -31,7 +31,7 @@ let create_signup_code () =
   let code = Int64.(Random.int64 max_int |> to_string) in
   try
     Raw.put_code ~code ();
-    Printf.printf "New sign-up code: %s %!" code
+    Printf.printf "New sign-up code: %s \n%!" code
   with _ -> print_endline "Could not create a unique sign-up code!"
 
 let new_user ~firstname ~lastname ~email ~username ~password ~code =
