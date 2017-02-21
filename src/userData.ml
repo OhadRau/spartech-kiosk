@@ -16,7 +16,8 @@ type ticket = {
   name : string;
   issue : string;
   timestamp : float;
-  assigned : string
+  assigned : string;
+  resolution : string
 }
 
 let ticket_of_json json =
@@ -29,15 +30,17 @@ let ticket_of_json json =
     | _ -> "" in
   let name = json |> get_field "name" |> string
   and issue = json |> get_field "issue" |> string
-  and assigned = json |> get_field "assigned" |> string in
-  { id = 0; name; issue; timestamp = Unix.time (); assigned }
+  and assigned = json |> get_field "assigned" |> string
+  and resolution = json |> get_field "resolution" |> string in
+  { id = 0; name; issue; timestamp = Unix.time (); assigned; resolution }
 
-let json_of_ticket {id; name; issue; timestamp; assigned} =
+let json_of_ticket {id; name; issue; timestamp; assigned; resolution} =
   `Assoc ["id", `Int id;
           "name", `String name;
           "issue", `String issue;
           "timestamp", `Float timestamp;
-          "assigned", `String assigned]
+          "assigned", `String assigned;
+          "resolution", `String resolution]
 
 let json_of_tickets tickets =
   `List (List.map json_of_ticket tickets)

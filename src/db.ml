@@ -16,8 +16,9 @@ module Raw = struct
   let (_, get_hash) = [%gensqlite db "SELECT @s{password} FROM users WHERE username = %s{username}"]
   let (_, get_users) = [%gensqlite db "SELECT @s{username}, @s{firstname}, @s{lastname} FROM users"]
 
+  let (_, get_ticket) = [%gensqlite db "SELECT @s{name}, @s{issue}, @f{timestamp}, @s{assigned} FROM tickets WHERE ROWID=%d{id}"]
   let (_, get_tickets) = [%gensqlite db "SELECT @d{ROWID}, @s{name}, @s{issue}, @f{timestamp}, @s{assigned} FROM tickets"]
-  let (_, get_archive) = [%gensqlite db "SELECT @d{ROWID}, @s{name}, @s{issue}, @f{timestamp}, @s{assigned} FROM archive"]
+  let (_, get_archive) = [%gensqlite db "SELECT @d{ROWID}, @s{name}, @s{issue}, @f{timestamp}, @s{assigned}, @s{resolution} FROM archive"]
   let (_, get_user_tickets) = [%gensqlite db "SELECT @d{ROWID}, @s{name}, @s{issue}, @f{timestamp} FROM tickets WHERE assigned=%s{username}"]
 
   let (_, put_ticket)  = [%gensqlite db "INSERT INTO tickets (name, issue, timestamp, assigned) VALUES (%s{name}, %s{issue}, %s{timestamp}, %s{assigned})"]
@@ -59,22 +60,28 @@ let verify ~username ~password f =
       then f ()
       else ()
 
+let get_ticket ~id =
+  match Raw.get_ticket ~id () with
+  | [] -> None
+  | (name, issue, timestamp, assigned)::_ ->
+    Some (name, issue, float_of_string timestamp, assigned)
+
 let get_tickets () =
   let tickets = Raw.get_tickets () in
   let create_ticket (id, name, issue, timestamp, assigned) =
     let assigned = match get_user ~username:assigned with
       | None -> "N/A"
       | Some (first, last, _) -> first ^ " " ^ last in
-    { id; name; issue; timestamp = float_of_string timestamp; assigned } in
+    { id; name; issue; timestamp = float_of_string timestamp; assigned; resolution = "" } in
   List.map create_ticket tickets
 
 let get_archive () =
   let tickets = Raw.get_archive () in
-  let create_ticket (id, name, issue, timestamp, assigned) =
+  let create_ticket (id, name, issue, timestamp, assigned, resolution) =
     let assigned = match get_user ~username:assigned with
       | None -> "N/A"
       | Some (first, last, _) -> first ^ " " ^ last in
-    { id; name; issue; timestamp = float_of_string timestamp; assigned } in
+    { id; name; issue; timestamp = float_of_string timestamp; assigned; resolution } in
   List.map create_ticket tickets
 
 let archive ~id ~resolution ~username ~password =
