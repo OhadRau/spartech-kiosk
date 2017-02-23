@@ -19,7 +19,7 @@ namespace Accounts.Css
         {
             Console.WriteLine("Logging in to account");
 
-            SqlConnection con = new SqlConnection("Data Source=" + "10.217.115.245;" +
+            SqlConnection con = new SqlConnection("Data Source=" + "localhost;" +
                                                    "Database=STUDENT_KIOSK,1433;" +
                                                    "Integrated Security = false;" +
                                                    "Initial Catalog=master;" +
@@ -31,6 +31,17 @@ namespace Accounts.Css
             SqlCommand command = new SqlCommand("SELECT * FROM Student_Accounts", con);
             SqlDataReader reader = command.ExecuteReader();
 
+
+            // Admin 
+            if (TextBox1.Text.ToString() == "Admin")
+            {
+                if (TextBox2.Text.ToString() == "aDmIn01")
+                {
+                    Response.Redirect("Ticket.html");
+                }
+            }
+
+
             while (reader.Read())
             {
                 if(reader["Name"].ToString() == TextBox1.Text)
@@ -38,22 +49,11 @@ namespace Accounts.Css
                     if (reader["Password"].ToString() == TextBox2.Text)
                     {
 
-                        // Admin 
-                        if (reader["Name"].ToString() == "Admin")
-                        {
-                            if (reader["Password"].ToString() == "aDmIn01")
-                            {
-                                Response.Redirect(@"\spartech-kiosk\static\ticket.html");
-                            }
-                        }
-                        else
-                        {
-
-                            // Goto login page
-                            Session["Name"] = TextBox1.Text;
-                            Response.Redirect("NewTicket.aspx");
-                        }
                         
+                        // Goto login page
+                        Session["Name"] = TextBox1.Text;
+                        Response.Redirect("NewTicket.aspx");
+
                     }
                 }
             }

@@ -101,6 +101,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="static\content.css" />
+    <Content Include="static\lib\css\bootstrap-theme.css.map" />
+    <Content Include="static\lib\css\bootstrap-theme.min.css.map" />
+    <Content Include="static\lib\css\bootstrap.css.map" />
+    <Content Include="static\lib\css\bootstrap.min.css.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -111,6 +116,12 @@
   <ItemGroup>
     <Content Include="Css\StyleSheet.css" />
     <Content Include="RegisterForm.aspx" />
+    <Content Include="static\lib\css\bootstrap-theme.css" />
+    <Content Include="static\lib\css\bootstrap-theme.min.css" />
+    <Content Include="static\lib\css\bootstrap.css" />
+    <Content Include="static\lib\css\bootstrap.min.css" />
+    <Content Include="static\nav.css" />
+    <Content Include="Ticket.html" />
     <Content Include="WebForm1.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
@@ -148,6 +159,10 @@
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="static\lib\fonts\" />
+    <Folder Include="static\lib\js\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

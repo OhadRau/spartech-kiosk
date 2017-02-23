@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Spartech Ticket %d</title>
+    <link rel="stylesheet" href="/static/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/nav.css">
+    <link rel="stylesheet" href="/static/content.css">
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Spartech</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/signup/">Sign Up</a>
+                    </li>
+                    <li>
+                        <a href="/tickets/">Open Tickets</a>
+                    </li>
+                    <li>
+                        <a href="/archive/">Archived Tickets</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Ticket Information:</h2>
+        <table class="table">
+            <tr>
+                <td>Ticket ID</td>
+                <td>%d</td>
+            </tr>
+            <tr>
+                <td>Submitter</td>
+                <td>%s</td>
+            </tr>
+            <tr>
+                <td>Issue</td>
+                <td>%s</td>
+            </tr>
+            <tr>
+                <td>Submitted on</td>
+                <td>%s</td>
+            </tr>
+            <tr>
+                <td>Assigned to</td>
+                <td>%s</td>
+            </tr>
+        </table>
+        <div align="left">
+            <form class="new-form" action="/close/" method="POST">
+                <h3 class="form-heading">Close this ticket</h3>
+                <input type="hidden" name="id" value="%d" />
+                <textarea class="form-control" name="solution" placeholder="Solution"></textarea>
+                <input class="form-control top" type="text" name="username" placeholder="Username" />
+                <input class="form-control bottom" type="password" name="password" placeholder="Password" />
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Close</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
