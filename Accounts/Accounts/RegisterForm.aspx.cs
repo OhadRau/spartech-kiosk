@@ -22,40 +22,43 @@ namespace Accounts
         {
             string password;
             string username = UsernameTextbox.Text;
-            string email = EmailTextbox.Text; 
-            if (PasswordTextbox.Text == ConfirmPasswordTextbx.Text)
+            string email = EmailTextbox.Text;
+            if (UsernameTextbox.Text != null)
             {
-                Console.WriteLine("adding new account");
-                password = PasswordTextbox.Text;
+                if (PasswordTextbox.Text == ConfirmPasswordTextbx.Text)
+                {
+                    Console.WriteLine("adding new account");
+                    password = PasswordTextbox.Text;
 
-                SqlConnection con = new SqlConnection("Data Source=" + "10.217.115.245;" +
-                                                  "Database=STUDENT_KIOSK,1433;" +
-                                                  "Integrated Security = false;" +
-                                                  "Initial Catalog=master;" +
-                                                  "connection timeout = 30;" +
-                                                  @"User ID=Student;" +
-                                                  "Password=Student123;");
+                    SqlConnection con = new SqlConnection("Data Source=" + "10.217.115.245;" +
+                                                      "Database=STUDENT_KIOSK,1433;" +
+                                                      "Integrated Security = false;" +
+                                                      "Initial Catalog=master;" +
+                                                      "connection timeout = 30;" +
+                                                      @"User ID=Student;" +
+                                                      "Password=Student123;");
 
-                con.Open();
-                SqlCommand command = new SqlCommand("SELECT * FROM Student_Accounts", con);
-                string query = "INSERT INTO Student_Accounts (Name, Email, Password) VALUES (@Name, @Email, @Password)";
+                    con.Open();
+                    SqlCommand command = new SqlCommand("SELECT * FROM Student_Accounts", con);
+                    string query = "INSERT INTO Student_Accounts (Name, Email, Password) VALUES (@Name, @Email, @Password)";
 
-                SqlCommand cmd = new SqlCommand(query);
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Connection = con;
-                cmd.Parameters.AddWithValue("@Name", username);
-                cmd.Parameters.AddWithValue("@Email", email); 
-                cmd.Parameters.AddWithValue("@Password", password);
-                cmd.ExecuteNonQuery();
-                con.Close();
-                
-                // Redirect to form page 
+                    SqlCommand cmd = new SqlCommand(query);
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.Connection = con;
+                    cmd.Parameters.AddWithValue("@Name", username);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Password", password);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
 
-            }
-            else
-            {
-               // passwords dont match 
+                    // Redirect to form page 
 
+                }
+                else
+                {
+                    // passwords dont match 
+
+                }
             }
 
             

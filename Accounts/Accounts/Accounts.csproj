@@ -94,6 +94,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminPage.aspx" />
     <Content Include="Images\fulton-county-logo.png" />
     <Content Include="NewTicket.aspx" />
     <Content Include="packages.config" />
@@ -118,6 +119,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminPage.aspx.cs">
+      <DependentUpon>AdminPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPage.aspx.designer.cs">
+      <DependentUpon>AdminPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="NewTicket.aspx.cs">
       <DependentUpon>NewTicket.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -44,3 +44,48 @@
     margin: auto;
     margin-top: 10%;
 }
+
+.CenterLogin{
+    top: 25%; 
+    position: absolute; 
+
+}
+
+.AdminTable{
+    margin: auto; 
+    margin-left:25%;
+    margin-right: 25%; 
+    margin-top: 14%;
+   
+
+    border-style:solid;
+    border-color: #6A4A00; 
+}
+
+div.ScrollMenu{
+
+    background-color: #B88000; 
+    overflow: auto;
+    white-space: nowrap; 
+
+}
+
+div.ScrollMenu li{
+    display:list-item; 
+    text-align: center; 
+    padding: 14px; 
+    text-decoration: none; 
+    
+}
+
+div.ScrollMenu li:hover{
+    background-color: #F2BC41; 
+    color: white; 
+
+}
+
+.IDschoolList{
+    display:inline; 
+    font-size:18px; 
+     
+}
