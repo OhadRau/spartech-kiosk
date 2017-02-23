@@ -37,9 +37,23 @@ namespace Accounts.Css
                 {
                     if (reader["Password"].ToString() == TextBox2.Text)
                     {
-                        // Goto login page
-                        Session["Name"] = TextBox1.Text;
-                        Response.Redirect("NewTicket.aspx"); 
+
+                        // Admin 
+                        if (reader["Name"].ToString() == "Admin")
+                        {
+                            if (reader["Password"].ToString() == "aDmIn01")
+                            {
+                                Response.Redirect(@"\spartech-kiosk\static\ticket.html");
+                            }
+                        }
+                        else
+                        {
+
+                            // Goto login page
+                            Session["Name"] = TextBox1.Text;
+                            Response.Redirect("NewTicket.aspx");
+                        }
+                        
                     }
                 }
             }
