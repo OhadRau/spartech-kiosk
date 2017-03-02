@@ -6,6 +6,12 @@
     width: 100%;
     height: 100%; 
 }
+body.AdminPage{
+   width: 100%;
+   height: 100%; 
+   
+   background-color: white; 
+}
 .LOGIN{
     width: 400px;
 
@@ -17,6 +23,16 @@
     margin-right: auto;
     margin-bottom: 0;
 }
+
+.Heading{
+    color: white; 
+    width: 100%;
+    height: 79px;
+    background-color: #B88000;
+    margin-bottom: 75px;
+    font-size: 24px; 
+}
+
 .Ticket{
     width: 25%;
     height: 100%;
@@ -34,6 +50,12 @@
     font-weight: bold;
     font-size: large;
 } 
+
+.RespondTicket{
+    margin-top: 0%;  
+    margin-bottom: 100%; 
+
+}
 
 .btn{
     width: 76px;
@@ -53,13 +75,11 @@
 
 .AdminTable{
     margin: auto; 
-    margin-left:25%;
-    margin-right: 25%; 
-    margin-top: 14%;
-   
+    margin-left:5%;
+    margin-right: 10%; 
+    margin-top: 0%;
 
     border-style:solid;
-    border-color: #6A4A00; 
 }
 
 div.ScrollMenu{

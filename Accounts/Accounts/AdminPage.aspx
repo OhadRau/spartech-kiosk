@@ -6,138 +6,123 @@
 <head runat="server">
     <title>Admin Page</title>
     <link href="Css/StyleSheet.css" rel="stylesheet" />
+    <style type="text/css">
+        #TextArea1 {
+            height: 359px;
+            width: 588px;
+            margin-left: 0px;
+        }
+        .auto-style1 {
+            width: 198px;
+        }
+        
+        </style>
     </head>
 
-<body>
+<body class="AdminPage">
     <form id="form1" runat="server">
 
-     <div class ="PAGE">
-        
+     
+       
+     <div class ="Heading">
+         <div style="margin: 12px;">
+             <h1>Ticket Information</h1> 
+         </div>
+         
+     </div>
+      
      <div class ="AdminTable">
+               
+         
+         <br />
 
-        <table>
-            
-            <tr>
-                <td>
-                    <ul>
+         <table>
+             <tr>
+                 <td>
+                     <div>
+                         <asp:GridView ID="GridView1" runat="server" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" Height="396px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="685px" style="margin-right: 0px" AllowPaging="True">
+                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                         <Columns>
+                             <asp:CommandField ShowSelectButton="True" />
+                             <asp:BoundField DataField="Last_Name" HeaderText="Last_Name" SortExpression="Last_Name" />
+                             <asp:BoundField DataField="First_Name" HeaderText="First_Name" SortExpression="First_Name" />
+                             <asp:BoundField DataField="School" HeaderText="School" SortExpression="School" />
+                             <asp:BoundField DataField="Ticket" HeaderText="Ticket" SortExpression="Ticket" />
+                             <asp:BoundField DataField="Device" HeaderText="Device" SortExpression="Device" />
+                             <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
+                         </Columns>
+                         <EditRowStyle BackColor="#999999" />
+                         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                         <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                         <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                         <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                         <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                         <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                         <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                         <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                         </asp:GridView>
+                     </div>
+                 </td>
 
-                        <li class ="IDschoolList">School</li>
-                        <li class ="IDschoolList">
+                 <td class="auto-style1">
+                     <div class="RespondTicket">
 
-                            <select name ="Schools">
-                            <option value ="Westlake">Westlake</option>
-                            <option value ="Langston">Langston</option>
-                            <option value ="Creekside">Creekside</option>
-                            <option value ="Banneker">Banneker</option>
-                            </select>
+                         <table>
+                             <tr>
+                                 <td>
+                                     <asp:Label ID="NameLabel" runat="server" Text="Label">Name: </asp:Label>
+                                 </td>
+                                 <td>
+                                     <asp:TextBox ID="NameTextbox" runat="server"></asp:TextBox>
+                                 </td>
+                             </tr>
 
-                        </li>
-                    </ul>
-                                    
+                             <tr>
+                                 <td>
+                                     <asp:Label ID="TicketNumberLabel" runat="server" Text="Label">Ticket #: </asp:Label>
+                                 </td>
+                                 <td>
+                                     <asp:TextBox ID="TicketNumberTextbox" runat="server"></asp:TextBox>
+                                 </td>
+                             </tr>
 
-                </td>
-            </tr>
-                        
-            <tr>
-                <td>
-                    <div class ="ScrollMenu">
-                        <ul>
-                            <li>
-                                IPAD
-                            </li>
-                            <li>
-                                KINDLE
-                            </li>
-                            <li>
-                                SURFACE
-                            </li>
-                        </ul>
-                    </div>
-                                       
-                </td>
-            </tr>
+                             <tr>
+                                 <td>
+                                     <asp:Label ID="SchoolLabel" runat="server" Text="Label">School: </asp:Label>
+                                 </td>
+                                 <td>
+                                     <asp:TextBox ID="SchoolTextbox" runat="server"></asp:TextBox>
+                                 </td>
+                                
+                             </tr>
 
-        </table>
+                             <tr>
+                                 <td></td>
+                                  <td>
+                                     <asp:Button ID="ResolveButton" runat="server" Text="Resolve!" Width="124px" OnClick="ResolveButton_Click" />
+                                 </td>
+                             </tr>
 
-         <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource1" 
-            onsorting="ListView1_Sorting"  InsertItemPosition="LastItem" 
-            onitemcommand="ListView1_ItemCommand" >
-            <LayoutTemplate>
-                <table border="0" cellpadding="1">
-                    <tr style="background-color:#E5E5FE">
-                        <th align="left"><asp:LinkButton ID="lnkId" runat="server" CommandName="Sort" CommandArgument="ID">Id</asp:LinkButton></th>
-                        <th align="left"><asp:LinkButton ID="lnkName" runat="server" CommandName="Sort" CommandArgument="FirstName">Name</asp:LinkButton></th>
-                        <th align="left"><asp:LinkButton ID="lnkType" runat="server" CommandName="Sort" CommandArgument="ContactType">Type</asp:LinkButton></th>
-                        <th></th>
-                    </tr>
-                    <tr id="itemPlaceholder" runat="server"></tr>
-                </table>
-                <asp:DataPager ID="ItemDataPager" runat="server" PageSize="5">
-                    <Fields>
-                        <asp:NumericPagerField ButtonCount="2" />
-                    </Fields>
-                </asp:DataPager>    
-            </LayoutTemplate>
-            <ItemTemplate>
-                    <tr>
-                        <td><asp:Label runat="server" ID="lblId"><%#Eval("ID") %></asp:Label></td>
-                        <td><asp:Label runat="server" ID="lblName"><%#Eval("FirstName")+" "+Eval("LastName") %></asp:Label></td>
-                        <td><asp:Label runat="server" ID="lblType"><%#Eval("ContactType") %></asp:Label></td>
-                        <td><asp:LinkButton ID="lnkEdit" runat="server" CommandName="Edit">Edit</asp:LinkButton></td>
-                    </tr>
-            </ItemTemplate>
-            <AlternatingItemTemplate>
-                    <tr style="background-color:#EFEFEF">
-                        <td><asp:Label runat="server" ID="lblId"><%#Eval("ID") %></asp:Label></td>
-                        <td><asp:Label runat="server" ID="lblName"><%#Eval("FirstName")+" "+Eval("LastName") %></asp:Label></td>
-                        <td><asp:Label runat="server" ID="lblType"><%#Eval("ContactType") %></asp:Label></td>
-                        <td><asp:LinkButton ID="lnkEdit" runat="server" CommandName="Edit">Edit</asp:LinkButton></td>
-                    </tr>
-            </AlternatingItemTemplate>
-            <EditItemTemplate>
-                    <td>
-                        <asp:TextBox ID="txtUpId" runat="server" Text='<%#Eval("Id") %>' Enabled="false" Width="20px"></asp:TextBox>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtUpFname" runat="server" Text='<%#Eval("FirstName") %>' Width="100px"></asp:TextBox>
-                        <asp:TextBox ID="txtUpLname" runat="server" Text='<%#Eval("LastName") %>' Width="100px"></asp:TextBox>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtUpCtype" runat="server" Width="100px" Text='<%#Eval("ContactType") %>'></asp:TextBox>
-                     </td>
-                     <td>   
-                            <asp:LinkButton ID="lnkUpdate" runat="server" CommandName="Update">Update</asp:LinkButton>
-                            <asp:LinkButton ID="lnkDelete" runat="server" CommandName="Delete">Delete</asp:LinkButton>
-                            <asp:LinkButton ID="lnkCancel" runat="server" CommandName="Cancel">Cancel</asp:LinkButton>
-                    </td>
-                    
-                </tr>
-            </EditItemTemplate>
-            <InsertItemTemplate>
-                <tr runat="server">
-                    <td></td>
-                    <td>
-                        <asp:TextBox ID="txtFname" runat="server" Text='<%#Eval("FirstName") %>' Width="100px">First Name</asp:TextBox>
-                        <asp:TextBox ID="txtLname" runat="server" Text='<%#Eval("LastName") %>' Width="100px">Last Name</asp:TextBox>
-                    </td>
-                    <td><asp:TextBox ID="txtCtype" runat="server" Text='<%#Eval("ContactType") %>' Width="100px">Contact Type</asp:TextBox></td>
-                     <td><asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" /></td>
-                    
-                </tr>
-            </InsertItemTemplate>
-            
-        </asp:ListView>
-        
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:TestDatabaseConnectionString %>" 
-            SelectCommand="SELECT * FROM [Contacts]" >
-        </asp:SqlDataSource>
+                         </table>                                          
+                         
+                      </div>
+                 </td>
+                 <td>
+                     <h3>Resolution</h3>
+                     
+                     <asp:TextBox ID="ResolutionTextbox" runat="server" Height="361px" Width="514px" TextMode="MultiLine"></asp:TextBox>
+                 </td>
+                
+             </tr>
+
+         </table>
+         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:masterConnectionString %>" OnSelecting="SqlDataSource1_Selecting" SelectCommand="SELECT [Last_Name], [First_Name], [School], [Ticket], [Device], [Description] FROM [Ticket]"></asp:SqlDataSource>
+
+
 
     </div>
 
-        </div>
     </form>
-    <p>
-&nbsp;</p>
 </body>
 </html>

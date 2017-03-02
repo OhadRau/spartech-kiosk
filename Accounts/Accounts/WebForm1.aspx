@@ -26,8 +26,7 @@
 
                 <div class="CenterLogin">
                     <table>
-
-
+                        
                         <tr>
                             <td style="padding: 10%;">USERNAME:
                             </td>
@@ -50,7 +49,6 @@
                             <td style="padding: 10%;">
                                 <asp:Button ID="Button1" runat="server" class="btn" Text="Register" OnClick="Button1_Click" />
                                 <asp:Button ID="Button2" runat="server" class="btn" Text="Login" OnClick="Button2_Click" />
-
                             </td>
                         </tr>
                     </table>

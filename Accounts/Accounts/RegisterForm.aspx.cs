@@ -30,7 +30,7 @@ namespace Accounts
                     Console.WriteLine("adding new account");
                     password = PasswordTextbox.Text;
 
-                    SqlConnection con = new SqlConnection("Data Source=" + "10.217.115.245;" +
+                    SqlConnection con = new SqlConnection("Data Source=" + "localhost;" +
                                                       "Database=STUDENT_KIOSK,1433;" +
                                                       "Integrated Security = false;" +
                                                       "Initial Catalog=master;" +

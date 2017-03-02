@@ -38,14 +38,14 @@
                         Device:
                     </td>
                     <td style ="padding: 10%;">
-                        <asp:DropDownList ID="DeviceList" runat="server">
-                                                        
+                        <asp:DropDownList ID="DeviceList" runat="server">                                                        
                             <asp:ListItem Value="IPad">IPad</asp:ListItem>
                             <asp:ListItem Value="Surface3">Surface 3</asp:ListItem>
                             <asp:ListItem Value="Laptop">Laptop</asp:ListItem>
                         </asp:DropDownList>
                     </td>
                 </tr>
+
 
                 <tr>
                     <td style ="padding: 10%;">
