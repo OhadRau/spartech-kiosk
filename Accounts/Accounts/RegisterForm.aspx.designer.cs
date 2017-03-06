@@ -31,6 +31,24 @@ namespace Accounts {
         protected global::System.Web.UI.WebControls.TextBox UsernameTextbox;
         
         /// <summary>
+        /// FirstNameTextbox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FirstNameTextbox;
+        
+        /// <summary>
+        /// LastNameTextbox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox LastNameTextbox;
+        
+        /// <summary>
         /// EmailTextbox control.
         /// </summary>
         /// <remarks>

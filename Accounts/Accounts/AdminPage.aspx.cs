@@ -33,7 +33,7 @@ namespace Accounts
         {                                 
             // send resolution to people
             string resolution = ResolutionTextbox.Text;
-            string studentName = GridView1.SelectedRow.Cells[2].Text + " " + GridView1.SelectedRow.Cells[1].Text;
+            string studentName = GridView1.SelectedRow.Cells[2].Text + " " + GridView1.SelectedRow.Cells[1].Text; 
             string final = studentName + "\n" + resolution; 
                         
             SqlConnection con = new SqlConnection("Data Source=" + "localhost;" +
@@ -58,7 +58,8 @@ namespace Accounts
 
 
             SqlDataReader reader = command2.ExecuteReader();
-            SqlCommand command3 = new SqlCommand(); 
+            SqlCommand command3 = new SqlCommand();
+            command3.Connection = con; 
             while (reader.Read())
             {
                 if (reader["Ticket"].ToString() == GridView1.SelectedRow.Cells[4].Text)

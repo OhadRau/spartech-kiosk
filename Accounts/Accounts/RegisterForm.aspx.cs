@@ -23,6 +23,9 @@ namespace Accounts
             string password;
             string username = UsernameTextbox.Text;
             string email = EmailTextbox.Text;
+            string firstname = FirstNameTextbox.Text;
+            string lastname = LastNameTextbox.Text;
+            string school = SchoolCodeTextbox.Text; 
             if (UsernameTextbox.Text != null)
             {
                 if (PasswordTextbox.Text == ConfirmPasswordTextbx.Text)
@@ -39,20 +42,23 @@ namespace Accounts
                                                       "Password=Student123;");
 
                     con.Open();
-                    SqlCommand command = new SqlCommand("SELECT * FROM Student_Accounts", con);
-                    string query = "INSERT INTO Student_Accounts (Name, Email, Password) VALUES (@Name, @Email, @Password)";
+                    string query = "INSERT INTO Accounts (Username, First_Name, Last_Name, Email, Password, School) VALUES" +
+                        "(@Username, @First_Name, @Last_Name, @Email, @Password, @School)";
 
                     SqlCommand cmd = new SqlCommand(query);
                     cmd.CommandType = System.Data.CommandType.Text;
                     cmd.Connection = con;
-                    cmd.Parameters.AddWithValue("@Name", username);
+                    cmd.Parameters.AddWithValue("@Username", username);
+                    cmd.Parameters.AddWithValue("@First_Name", firstname);
+                    cmd.Parameters.AddWithValue("@Last_Name", lastname);
                     cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Password", password);
+                    cmd.Parameters.AddWithValue("@School", school);
                     cmd.ExecuteNonQuery();
                     con.Close();
 
                     // Redirect to form page 
-
+                    Response.Redirect("WebForm1.aspx");
                 }
                 else
                 {

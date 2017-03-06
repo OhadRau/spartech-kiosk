@@ -6,12 +6,7 @@
 <head runat="server">
     <title>NEW TICKET</title>
     <link href="Css/StyleSheet.css" rel="stylesheet" />
-    <style type="text/css">
-        .auto-style1 {
-            width: 117px;
-        }
-    </style>
-</head>
+    </head>
 <body>
     <form id="form1" runat="server">
     <div class ="PAGE">
@@ -38,7 +33,7 @@
                         Device:
                     </td>
                     <td style ="padding: 10%;">
-                        <asp:DropDownList ID="DeviceList" runat="server">                                                        
+                        <asp:DropDownList ID="DeviceList" runat="server" OnSelectedIndexChanged="DeviceList_SelectedIndexChanged">                                                        
                             <asp:ListItem Value="IPad">IPad</asp:ListItem>
                             <asp:ListItem Value="Surface3">Surface 3</asp:ListItem>
                             <asp:ListItem Value="Laptop">Laptop</asp:ListItem>
@@ -52,7 +47,7 @@
                         Problem:
                     </td>
                     <td style ="padding: 10%;">
-                        <textarea id="ProblemTextbox" style="resize:none; width:280px; height:70px;" cols="20" rows="2"></textarea>
+                        <asp:TextBox ID="ProblemTextbox" runat="server" Height="361px" Width="262px" TextMode="MultiLine"></asp:TextBox>
                     </td>
                 </tr>
 
@@ -61,7 +56,7 @@
 
                     </td>
                     <td style ="padding:2px;">
-                         <asp:Button ID="SubmitButton" runat="server" Text="Submit!" />
+                         <asp:Button ID="SubmitButton" runat="server" Text="Submit!" OnClick="SubmitButton_Click" />
                     </td>
 
                 </tr>

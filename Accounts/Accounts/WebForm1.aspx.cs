@@ -28,7 +28,7 @@ namespace Accounts.Css
                                                    "Password=Student123;");
 
             con.Open();
-            SqlCommand command = new SqlCommand("SELECT * FROM Student_Accounts", con);
+            SqlCommand command = new SqlCommand("SELECT * FROM Accounts", con);
             SqlDataReader reader = command.ExecuteReader();
 
 
@@ -37,21 +37,24 @@ namespace Accounts.Css
             {
                 if (TextBox2.Text.ToString() == "aDmIn01")
                 {
-                    Response.Redirect("Ticket.html");
+                    Response.Redirect("AdminPage.aspx");
                 }
             }
 
 
             while (reader.Read())
             {
-                if(reader["Name"].ToString() == TextBox1.Text)
+                if(reader["Username"].ToString() == TextBox1.Text)
                 {
                     if (reader["Password"].ToString() == TextBox2.Text)
                     {
 
                         
                         // Goto login page
-                        Session["Name"] = TextBox1.Text;
+                        Session["FirstName"] = reader["First_Name"];
+                        Session["LastName"] = reader["Last_Name"];
+                        Session["School"] = reader["School"]; 
+                        
                         Response.Redirect("NewTicket.aspx");
 
                     }
@@ -61,6 +64,7 @@ namespace Accounts.Css
             con.Close();
         }
 
+        
         protected void Button1_Click(object sender, EventArgs e) //Register
         {
             Response.Redirect("RegisterForm.aspx"); 

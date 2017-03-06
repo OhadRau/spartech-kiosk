@@ -36,6 +36,22 @@
             </tr>
             <tr>
                 <td style="padding: 5%;">
+                    First Name :
+                </td>
+                <td style="padding: 5%;">
+                    <asp:TextBox ID="FirstNameTextbox" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 5%;">
+                    Last Name :
+                </td>
+                <td style="padding: 5%;">
+                    <asp:TextBox ID="LastNameTextbox" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 5%;">
                     EMAIL : 
                 </td>
                 <td style="padding: 5%;">
@@ -61,7 +77,7 @@
         
             <tr>
                 <td style="padding: 5%;">
-                    SCHOOL CODE :
+                    SCHOOL :
                 </td>
                 <td style="padding: 5%;">
                     <asp:TextBox ID="SchoolCodeTextbox" runat="server"></asp:TextBox>
