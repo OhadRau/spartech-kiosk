@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>%s Sign-Up</title>
+    <link rel="stylesheet" href="/static/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/nav.css">
+    <link rel="stylesheet" href="/static/content.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">%s</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="#">Sign Up</a>
+            </li>
+            <li>
+              <a href="/tickets/">Open Tickets</a>
+            </li>
+            <li>
+              <a href="/archive/">Archived Tickets</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <h1>%s - Sign Up</h1>
+      <form class="new-form" action="/new/" method="POST">
+        <h3 class="form-heading">Sign up</h3>
+        <input class="form-control top"    name="firstname"  placeholder="First Name"   type="text"/>
+        <input class="form-control middle" name="lastname"   placeholder="Last Name"    type="text"/>
+        <input class="form-control middle" name="email"      placeholder="E-mail"       type="text"/>
+        <input class="form-control middle" name="username"   placeholder="Username"     type="text"/>
+        <input class="form-control middle" name="password"   placeholder="Password"     type="password"/>
+        <input class="form-control bottom" name="code"       placeholder="Sign-up code" type="text"/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Go!</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "school-name": "Spartech",
+  "school-logo": "",
+
+  "num-admins": 13,
+  "gen-admin-keys": false,
+
+  "use-email": false,
+  "mail-server": "localhost"
+}

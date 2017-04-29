@@ -4,6 +4,8 @@ open Opium.Std
 
 open UserData
 
+let config = Configuration.get_config "config.json"
+
 let new_user = post "/new/" begin fun req ->
     App.urlencoded_pairs_of_body req >>= fun params ->
     let post_param name = List.assoc name params |> List.hd in
@@ -19,16 +21,19 @@ let new_user = post "/new/" begin fun req ->
   end
 
 let signup = get "/signup/" begin fun req ->
-    Db.create_signup_code ();
-    `String [%blob "../static/signup.html"] |> respond'
+    if config.gen_admin_keys then Db.create_signup_code ();
+    let page = Printf.sprintf [%blob "../template/signup.html"]
+      config.school_name config.school_name config.school_name in
+    `String page |> respond'
   end
 
 let ticket_page = get "/ticket/:id" begin fun req ->
     let id = param req "id" |> int_of_string in
     match Db.get_ticket ~id with
     | Some (name, issue, timestamp, assigned) ->
-      let page = Printf.sprintf [%blob "../static/ticket.html"]
-          id id name issue (format_time timestamp) assigned id in
+      let page = Printf.sprintf [%blob "../template/ticket.html"]
+        config.school_name id config.school_name id name issue
+        (format_time timestamp) assigned id in
       `String page |> respond'
     | None -> redirect' (Uri.of_string "/tickets/")
   end
@@ -54,8 +59,9 @@ let tickets_page = get "/tickets/" begin fun req ->
       "</td><td>" ^ ticket.assigned ^
       "</td><td><a href='" ^ link ^ "'>...</a></td></tr>" in
     let tickets = Db.get_tickets () in
-    let page = Printf.sprintf [%blob "../static/tickets.html"]
-	    "Open Tickets" "Close"
+    let page = Printf.sprintf [%blob "../template/tickets.html"]
+      config.school_name config.school_name config.school_name
+      "Open Tickets" "Close"
       (List.map row_of_ticket tickets |> String.concat "") in
     `String page |> respond'
   end
@@ -69,9 +75,9 @@ let archive_page = get "/archive/" begin fun req ->
       "</td><td>" ^ ticket.assigned ^
       "</td><td>" ^ ticket.resolution ^ "</td></tr>" in
     let tickets = Db.get_archive () in
-    let page = Printf.sprintf [%blob "../static/tickets.html"]
-	    "Archived Tickets" "Resolution"
-      (List.map row_of_ticket tickets |> String.concat "") in
+    let page = Printf.sprintf [%blob "../template/tickets.html"]
+      config.school_name config.school_name config.school_name "Archived Tickets" 
+      "Resolution" (List.map row_of_ticket tickets |> String.concat "") in
     `String page |> respond'
   end
 
@@ -84,9 +90,13 @@ let submit_ticket = post "/submit/" begin fun req ->
     and assigned = post_param "assigned" in
     Db.put_ticket ~name ~issue ~timestamp ~assigned;
     let open Lwt in
-    begin match Db.get_user ~username:assigned with
-      | Some (_, _, email) ->
-        Mail.send_reminder ~email ~name ~issue >>= const (return ())
+    begin match config.mail_server with
+      | Some host ->
+        begin match Db.get_user ~username:assigned with
+          | Some (_, _, email) ->
+            Mail.send_reminder ~host ~email ~name ~issue >>= const (return ())
+          | None -> return ()
+        end
       | None -> return ()
     end >>= const (redirect' (Uri.of_string "/"))
   end
@@ -96,11 +106,15 @@ let index = get "/" begin fun req ->
     let option_of_user (u, f, l) =
       Printf.sprintf "<option value=\"%s\">%s %s</option>" u f l in
     let options = List.map option_of_user users |> String.concat "" in
-    let page = Printf.sprintf [%blob "../static/index.html"] options in
+    let page = Printf.sprintf [%blob "../template/index.html"]
+      config.school_name config.school_name config.school_name options in
     `String page |> respond'
   end
 
 let app =
+  for i = 1 to config.num_admins do
+    Db.create_signup_code ()
+  done;
   let static = Middleware.static ~local_path:"./static" ~uri_prefix:"/static" in (* ./ because from exe directory *)
   App.empty
   |> index

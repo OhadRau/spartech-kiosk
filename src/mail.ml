@@ -26,10 +26,10 @@ module Mail = struct
     sendmail ~body
 end
 
-let send_reminder ~email ~name ~issue =
+let send_reminder ~email ~name ~issue ~host =
   let name = Unix.gethostname ()
   and from = Addr.of_string "noreply@spartech.kiosk"
   and to_  = Addr.of_string email in
   let subject = "New ticket from " ^ name in
   let message = Mail.create_message subject issue in
-  Mail.sendmail ~host:"localhost" ~name ~from ~to_:[to_] ~message ()
+  Mail.sendmail ~host:host ~name ~from ~to_:[to_] ~message ()
