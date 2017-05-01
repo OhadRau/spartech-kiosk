@@ -42,7 +42,7 @@ namespace Accounts
                                               "Initial Catalog=master;" +
                                               "connection timeout = 30;" +
                                               @"User ID=Student;" +
-                                              "Password=Student123;");
+                                              "Password=Student321;");
 
             con.Open();
             SqlCommand command = new SqlCommand("SELECT * FROM Resolution", con);

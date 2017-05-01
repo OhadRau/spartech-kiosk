@@ -106,6 +106,7 @@
     <Content Include="static\lib\css\bootstrap-theme.min.css.map" />
     <Content Include="static\lib\css\bootstrap.css.map" />
     <Content Include="static\lib\css\bootstrap.min.css.map" />
+    <None Include="Properties\PublishProfiles\StudentKiosk.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

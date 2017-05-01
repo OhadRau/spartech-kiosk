@@ -25,7 +25,7 @@ namespace Accounts
                                        "Initial Catalog=master;" +
                                        "connection timeout = 30;" +
                                        @"User ID=Student;" +
-                                       "Password=Student123;");
+                                       "Password=Student321;");
 
 
             con.Open();
@@ -65,7 +65,7 @@ namespace Accounts
                                        "Initial Catalog=master;" +
                                        "connection timeout = 30;" +
                                        @"User ID=Student;" +
-                                       "Password=Student123;"))
+                                       "Password=Student321;"))
             {
                 using (SqlCommand cmdCount = new SqlCommand(stmt, thisConnection))
                 {

@@ -39,7 +39,7 @@ namespace Accounts
                                                       "Initial Catalog=master;" +
                                                       "connection timeout = 30;" +
                                                       @"User ID=Student;" +
-                                                      "Password=Student123;");
+                                                      "Password=Student321;");
 
                     con.Open();
                     string query = "INSERT INTO Accounts (Username, First_Name, Last_Name, Email, Password, School) VALUES" +
