@@ -3,7 +3,7 @@ open UserData
 open Batteries
 open Gensqlite_tools
 
-let db = Sqlite3.db_open "data/tickets.db"
+let db = Sqlite3.db_open "/var/kiosk/tickets.db"
 
 module Raw = struct
   let (_, get_code) = [%gensqlite db "SELECT @d{used} FROM codes WHERE code=%s{code}"]
