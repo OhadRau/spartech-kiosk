@@ -4,7 +4,7 @@ open Opium.Std
 
 open UserData
 
-let config = Configuration.get_config "config.json"
+let config = Configuration.get_config "/etc/kiosk/config.json"
 
 let new_user = post "/new/" begin fun req ->
     App.urlencoded_pairs_of_body req >>= fun params ->
