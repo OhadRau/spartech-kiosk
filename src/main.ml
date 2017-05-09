@@ -115,7 +115,7 @@ let app =
   for i = 1 to config.num_admins do
     Db.create_signup_code ()
   done;
-  let static = Middleware.static ~local_path:"./static" ~uri_prefix:"/static" in (* ./ because from exe directory *)
+  let static = Middleware.static ~local_path:"/var/kiosk/static" ~uri_prefix:"/static" in (* ./ because from exe directory *)
   App.empty
   |> index
   |> new_user
